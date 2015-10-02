@@ -2,6 +2,19 @@
 # Bicycle Distance Report Server
 
 
+## Install
+
+Repuirement:
+
+* The [NodeJS](http://nodejs.org) is required
+* A running MySQL database
+
+Shell
+
+```bash
+$ git clone https://github.com/blueskyfish/bicycle-distance-report-server.git
+$ npm install
+```
 
 ## Start server
 
@@ -52,6 +65,41 @@ Overview
     "database": "database name"
   }
 }
+```
+
+## Endpoints
+
+Every request needs the header field `x-bicycle-token` (except about). This header field contains your
+unique token from your password.
+
+### About
+
+```
+GET /about
+```
+
+### Distance List
+
+```
+GET /distances
+```
+
+### New Distance
+
+```
+POST /distances
+```
+
+### Modified Distance
+
+```
+PUT /distances/:id
+```
+
+### Delete Distance
+
+```
+DELETE /distances/:id
 ```
 
 ## License

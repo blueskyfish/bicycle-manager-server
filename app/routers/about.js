@@ -13,7 +13,7 @@ var pkg = require('../../package.json');
 
 module.exports = {
   getHandler: function () {
-    return function (req, res) {
+    return function aboutHandler(req, res) {
       _aboutHandler(req, res);
     }
   }
@@ -23,8 +23,12 @@ function _aboutHandler(req, res) {
   helper.sendResult(res, {
     version: {
       name: pkg.name,
-      version: pkg.version,
-      author: pkg.author
+      version: pkg.version
+    },
+    author: {
+      name: pkg.author.name,
+      url: pkg.author.url,
+      email: pkg.author.email
     }
   });
 }

@@ -2,7 +2,11 @@
   "name": "bicycle-distance-report-server",
   "version": "0.0.1",
   "description": "The Bicycle Distance Report Server",
-  "author": "BlueSkyFish <blueskyfish@blueskyfish.de>",
+  "author": {
+    "name": "BlueSkyFish",
+    "email": "blueskyfish@blueskyfish.de",
+    "url": "http://www.blueskyfish.de"
+  },
   "readme": "see @ readme.md",
   "repository": {
     "type": "git",
