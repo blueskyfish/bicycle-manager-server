@@ -1,0 +1,30 @@
+{
+  "name": "bicycle-distance-report-server",
+  "version": "0.0.1",
+  "description": "The Bicycle Distance Report Server",
+  "author": "BlueSkyFish <blueskyfish@blueskyfish.de>",
+  "readme": "see @ readme.md",
+  "repository": {
+    "type": "git",
+    "url": "https//github.com/blueskyfish/bicycle-distance-report-server"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "bluesky-logger": "0.3.1",
+    "body-parser": "1.14.1",
+    "express": "4.13.3",
+    "lodash": "3.10.1",
+    "merge": "1.2.0",
+    "minimist": "1.2.0",
+    "mysql": "2.9.0",
+    "q": "1.4.1",
+    "strftime": "0.9.2"
+  },
+  "devDependencies": {
+    "mocha": "2.3.3",
+    "supertest": "1.1.0"
+  }
+}

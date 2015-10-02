@@ -1,0 +1,11 @@
+
+.idea/
+*.iml
+
+node_modules/
+
+var/config/*
+!var/config/settings.json
+
+*.log
+*.pid
