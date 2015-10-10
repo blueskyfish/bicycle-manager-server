@@ -1,7 +1,7 @@
 {
   "name": "bicycle-manager-server",
   "version": "1.0.0",
-  "description": "The Bicycle Distance Report Server",
+  "description": "The Bicycle Manager Server",
   "author": {
     "name": "BlueSkyFish",
     "email": "blueskyfish@blueskyfish.de",
