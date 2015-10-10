@@ -1,5 +1,5 @@
 /**
- * bicycle-distance-report-server - https//github.com/blueskyfish/bicycle-distance-report-server
+ * bicycle-manager-server - https//github.com/blueskyfish/bicycle-manager-server.git
  *
  * The MIT License (MIT)
  * Copyright (c) 2015 BlueSkyFish
@@ -17,7 +17,7 @@ before(function () {
   process.env.BICYCLE_MODE = 'test';
 });
 
-describe('Bicycle Distance Report Server', function () {
+describe('Bicycle Manager Server', function () {
   var app;
   var token = 'bdrs-test-' + Date.now();
   var isNumber = /\d+/;
@@ -26,16 +26,16 @@ describe('Bicycle Distance Report Server', function () {
     app = require('../app/application')(3000);
   });
 
-  it('Should insert a new distance data', function (done) {
+  it('Should insert a new battery data', function (done) {
     var data = {
       date: '2015-10-01',
-      distance: 2200.1,
-      averageSpeed: 15.4,
-      rangeDistance: 12
+      mileage: 22000,
+      averageSpeed: 154,
+      distance: 120
     };
 
     request(app)
-      .post('/distances')
+      .post('/battery')
       .send(data)
       .set('x-bicycle-token', token)
       .expect(200)
@@ -44,15 +44,15 @@ describe('Bicycle Distance Report Server', function () {
         assert(!!result, 'response body should not null');
         assert(!!result.status, 'result object should have the property "status"');
         assert.equal(result.status, 'okay', 'result status should be "okay"');
-        assert(!!result.distanceId, 'result object should have the property "distanceId"');
-        assert(isNumber.test(result.distanceId), 'result distanceId should be a number');
+        assert(!!result.id, 'result object should have the property "id"');
+        assert(isNumber.test(result.id), 'result id should be a number');
       })
       .end(done);
   });
 
-  it('Should show the distance list', function (done) {
+  it('Should show the battery list', function (done) {
     request(app)
-      .get('/distances')
+      .get('/battery')
       .set('x-bicycle-token', token)
       .expect(function (res) {
         console.log(res.body);

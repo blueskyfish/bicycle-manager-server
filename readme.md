@@ -1,5 +1,5 @@
 
-# Bicycle Distance Report Server
+# Bicycle Manager Server
 
 
 ## Install
@@ -12,7 +12,7 @@ Repuirement:
 Shell
 
 ```bash
-$ git clone https://github.com/blueskyfish/bicycle-distance-report-server.git
+$ git clone https://github.com/blueskyfish/bicycle-manager-server.git
 $ npm install
 ```
 
@@ -78,28 +78,28 @@ unique token from your password.
 GET /about
 ```
 
-### Distance List
+### Battery List
 
 ```
-GET /distances
+GET /battery
 ```
 
-### New Distance
+### New Battery
 
 ```
-POST /distances
+POST /battery
 ```
 
-### Modified Distance
+### Modified Battery
 
 ```
-PUT /distances/:id
+PUT /battery/:id
 ```
 
-### Delete Distance
+### Delete Battery
 
 ```
-DELETE /distances/:id
+DELETE /battery/:id
 ```
 
 ## License

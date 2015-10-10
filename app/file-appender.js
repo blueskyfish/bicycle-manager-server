@@ -1,5 +1,5 @@
 /**
- * bicycle-distance-report-server - https//github.com/blueskyfish/bicycle-distance-report-server
+ * bicycle-manager-server - https//github.com/blueskyfish/bicycle-manager-server.git
  *
  * The MIT License (MIT)
  * Copyright (c) 2015 BlueSkyFish
@@ -37,7 +37,7 @@ function _appendMessage(logName, message) {
     _.padLeft(logName, 15, ' '),
     message
   ].join('');
-  var filename = "{date}-bicycle-distance-report-server-{mode}".replace(/\{(\.+)}/g, function (text, key) {
+  var filename = "{date}-bicycle-manager-server-{mode}".replace(/\{(\.+)}/g, function (text, key) {
     switch (key) {
       case 'date':
         return date;

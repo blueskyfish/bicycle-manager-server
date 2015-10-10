@@ -1,6 +1,6 @@
 {
-  "name": "bicycle-distance-report-server",
-  "version": "0.0.1",
+  "name": "bicycle-manager-server",
+  "version": "1.0.0",
   "description": "The Bicycle Distance Report Server",
   "author": {
     "name": "BlueSkyFish",
@@ -10,10 +10,11 @@
   "readme": "see @ readme.md",
   "repository": {
     "type": "git",
-    "url": "https//github.com/blueskyfish/bicycle-distance-report-server"
+    "url": "https//github.com/blueskyfish/bicycle-manager-server.git"
   },
   "license": "MIT",
   "scripts": {
+    "start": "node index.js --mode=local --port=8800",
     "test": "./node_modules/.bin/mocha"
   },
   "dependencies": {

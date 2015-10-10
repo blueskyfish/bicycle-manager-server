@@ -1,5 +1,5 @@
 /**
- * bicycle-distance-report-server - https//github.com/blueskyfish/bicycle-distance-report-server
+ * bicycle-manager-server - https//github.com/blueskyfish/bicycle-manager-server.git
  *
  * The MIT License (MIT)
  * Copyright (c) 2015 BlueSkyFish

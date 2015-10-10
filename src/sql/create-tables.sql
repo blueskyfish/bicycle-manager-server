@@ -8,17 +8,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `bicycle-distances`
+-- Tabellenstruktur für Tabelle `bicycle-battery`
 --
 
-DROP TABLE IF EXISTS `bicycle-distances`;
-CREATE TABLE `bicycle-distances` (
-  `distance_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bicycle-battery`;
+CREATE TABLE `bicycle-battery` (
+  `id` int(11) NOT NULL,
   `token` varchar(40) NOT NULL,
-  `date` date NOT NULL,
-  `distance` decimal(20,2) NOT NULL,
+  `date` date NOT NULL COMMENT 'The day was on the charged battery' ,
+  `mileage` int(11) NOT NULL COMMENT 'The current mileage on the control unit',
   `average_speed` decimal(20,2) NOT NULL,
-  `range_distance` decimal(20,2) NOT NULL
+  `distance` int(11) NOT NULL COMMENT 'The distance with the battery'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -26,10 +26,10 @@ CREATE TABLE `bicycle-distances` (
 --
 
 --
--- Indizes für die Tabelle `bicycle-distances`
+-- Indizes für die Tabelle `bicycle-battery`
 --
-ALTER TABLE `bicycle-distances`
-  ADD PRIMARY KEY (`distance_id`),
+ALTER TABLE `bicycle-battery`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_TOKEN` (`token`);
 
 --
@@ -37,10 +37,12 @@ ALTER TABLE `bicycle-distances`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `bicycle-distances`
+-- AUTO_INCREMENT für Tabelle `bicycle-battery`
 --
-ALTER TABLE `bicycle-distances`
-  MODIFY `distance_id` int(11) NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
+ALTER TABLE `bicycle-battery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+SET FOREIGN_KEY_CHECKS=1;
 
 COMMIT;
 

@@ -1,5 +1,5 @@
 /**
- * bicycle-distance-report-server - https//github.com/blueskyfish/bicycle-distance-report-server
+ * bicycle-manager-server - https//github.com/blueskyfish/bicycle-manager-server.git
  *
  * The MIT License (MIT)
  * Copyright (c) 2015 BlueSkyFish
@@ -23,14 +23,13 @@ var TOKEN_HEADER = 'x-bicycle-token';
 //
 router.use(tokenMiddleware_);
 
-
 //
 // Endpoints
 //
-router.get('/', getDistanceList_);
-router.post('/', saveNewDistance_);
-router.put('/:id', saveModifiedDistance_);
-router.delete('/:id', deleteDistance_);
+router.get('/', getBatteryList_);
+router.post('/', saveNewBattery_);
+router.put('/:id', saveModifiedBattery_);
+router.delete('/:id', deleteBattery_);
 
 
 module.exports = {
@@ -42,36 +41,39 @@ module.exports = {
 };
 
 var SQL_SELECT_DISTANCE = [
-  'SELECT `token`, `distance_id` AS distanceId, DATE_FORMAT(`date`, "%Y-%m-%d") AS date, ',
-  '  distance, average_speed AS averageSpeed, range_distance AS rangeDistance ',
-  'FROM `bicycle-distances` ',
+  'SELECT `id`, ',
+  '  DATE_FORMAT(`date`, "%Y-%m-%d") AS date, ',
+  '  `mileage`, ',
+  '  `average_speed` AS averageSpeed,' +
+  '  `distance` ',
+  'FROM `bicycle-battery` ',
   'WHERE `token` = {token} ',
   'ORDER BY `date` DESC ',
-  'LIMIT 20'
+  'LIMIT 21'
 ].join('\n');
 
 var SQL_INSERT_DISTANCE = [
-  'INSERT INTO `bicycle-distances` SET ',
+  'INSERT INTO `bicycle-battery` SET ',
   '  `token` = {token}, ',
   '  `date` = {date}, ',
-  '  `distance` = {distance}, ',
+  '  `mileage` = {mileage}, ',
   '  `average_speed` = {averageSpeed}, ' +
-  '  `range_distance` = {rangeDistance}'
+  '  `distance` = {distance}'
 ].join('\n');
 
 var SQL_UPDATE_DISTANCE = [
-  'UPDATE `bicycle-distances` SET ',
+  'UPDATE `bicycle-battery` SET ',
   '  `token` = {token}, ',
   '  `date` = {date}, ',
-  '  `distance` = {distance}, ',
+  '  `mileage` = {mileage}, ',
   '  `average_speed` = {averageSpeed}, ' +
-  '  `range_distance` = {rangeDistance} ',
-  'WHERE `distance_id` = {distanceId} AND `token` = {token}'
+  '  `distance` = {distance} ',
+  'WHERE `id` = {id} AND `token` = {token}'
 ].join('\n');
 
 var SQL_DELETE_DISTANCE = [
-  'DELETE FROM `bicycle-distances` ',
-  'WHERE `distance_id` = {distanceId} AND `token` = {token}'
+  'DELETE FROM `bicycle-bicycle` ',
+  'WHERE `id` = {id} AND `token` = {token}'
 ].join('\n');
 
 
@@ -88,7 +90,7 @@ function tokenMiddleware_(req, res, next) {
   next();
 }
 
-function getDistanceList_(req, res) {
+function getBatteryList_(req, res) {
   var values = {
     token: req.token
   };
@@ -96,7 +98,7 @@ function getDistanceList_(req, res) {
   database.query(SQL_SELECT_DISTANCE, values, conn)
     .then(function(result) {
       helper.sendResult(res, {
-        distances: result
+        batteryList: result
       });
     },
     function (reason) {
@@ -110,18 +112,18 @@ function getDistanceList_(req, res) {
     });
 }
 
-function saveNewDistance_(req, res) {
+function saveNewBattery_(req, res) {
   var values = {
     token: req.token
   };
-  var distance = req.body;
-  var data = _.assign({}, values, distance);
+  var batteryItem = req.body;
+  var data = _.assign({}, values, batteryItem);
   var conn = database.getConnection();
 
   database.query(SQL_INSERT_DISTANCE, data, conn)
     .then(function (result) {
       helper.sendResult(res, {
-        distanceId: result.insertId || -1
+        id: result.insertId || -1
       });
     },
     function (reason) {
@@ -135,20 +137,20 @@ function saveNewDistance_(req, res) {
     });
 }
 
-function saveModifiedDistance_(req, res) {
-  var distanceId = req.params.id;
+function saveModifiedBattery_(req, res) {
+  var id = req.params.id;
   var values = {
     token: req.token,
-    distanceId: distanceId
+    id: id
   };
-  var distance = req.body;
-  var data = _.assign({}, values, distance);
+  var batteryItem = req.body;
+  var data = _.assign({}, values, batteryItem);
   var conn = database.getConnection();
 
   database.query(SQL_UPDATE_DISTANCE, data, conn)
     .then(function () {
       helper.sendResult(res, {
-        distanceId: distanceId
+        distanceId: id
       });
     },
     function (reason) {
@@ -162,18 +164,18 @@ function saveModifiedDistance_(req, res) {
     });
 }
 
-function deleteDistance_(req, res) {
-  var distanceId = req.params.id;
+function deleteBattery_(req, res) {
+  var id = req.params.id;
   var values = {
     token: req.token,
-    distanceId: distanceId
+    id: id
   };
   var conn = database.getConnection();
 
   database.query(SQL_DELETE_DISTANCE, values, conn)
     .then(function () {
       helper.sendResult(res, {
-        distanceId: distanceId
+        id: id
       });
     },
     function (reason) {
@@ -185,4 +187,13 @@ function deleteDistance_(req, res) {
       conn.end();
       logger.debug('delete: close connection');
     });
+}
+
+
+function _prepareBatteryList(batterList) {
+  var items = [];
+  var prevItem;
+  _.forEach(batterList, function (batteryItem) {
+
+  })
 }

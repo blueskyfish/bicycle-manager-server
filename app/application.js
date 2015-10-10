@@ -1,5 +1,5 @@
 /**
- * bicycle-distance-report-server - https//github.com/blueskyfish/bicycle-distance-report-server
+ * bicycle-manager-server - https//github.com/blueskyfish/bicycle-manager-server.git
  *
  * The MIT License (MIT)
  * Copyright (c) 2015 BlueSkyFish
@@ -14,7 +14,7 @@ var settings = require('./settings');
 var factory = require('./logger');
 
 var about = require('./routers/about');
-var distance = require('./routers/distance-router');
+var distance = require('./routers/battery-router');
 
 var logger = factory.getLogger('server.main');
 
@@ -29,7 +29,7 @@ app.use(factory.loggerMiddleware);
 //
 // Router Endpoints
 //
-app.use('/distances', distance.getRouter());
+app.use('/battery', distance.getRouter());
 
 //
 // Endpoint /about
