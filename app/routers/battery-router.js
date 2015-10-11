@@ -12,7 +12,7 @@ var express = require('express');
 
 var database = require('../database');
 var helper = require('./helper');
-var logger = require('../logger').getLogger('server.router.distance');
+var logger = require('../logger').getLogger('server.router.battery');
 
 var router = express.Router();
 
@@ -45,11 +45,10 @@ var SQL_SELECT_DISTANCE = [
   '  DATE_FORMAT(`date`, "%Y-%m-%d") AS date, ',
   '  `mileage`, ',
   '  `average_speed` AS averageSpeed,' +
-  '  `distance` ',
+  '  `leftover` ',
   'FROM `bicycle-battery` ',
   'WHERE `token` = {token} ',
-  'ORDER BY `date` DESC ',
-  'LIMIT 21'
+  'ORDER BY `date` DESC '
 ].join('\n');
 
 var SQL_INSERT_DISTANCE = [
@@ -58,7 +57,7 @@ var SQL_INSERT_DISTANCE = [
   '  `date` = {date}, ',
   '  `mileage` = {mileage}, ',
   '  `average_speed` = {averageSpeed}, ' +
-  '  `distance` = {distance}'
+  '  `leftover` = {leftover}'
 ].join('\n');
 
 var SQL_UPDATE_DISTANCE = [
@@ -67,7 +66,7 @@ var SQL_UPDATE_DISTANCE = [
   '  `date` = {date}, ',
   '  `mileage` = {mileage}, ',
   '  `average_speed` = {averageSpeed}, ' +
-  '  `distance` = {distance} ',
+  '  `leftover` = {leftover} ',
   'WHERE `id` = {id} AND `token` = {token}'
 ].join('\n');
 
@@ -98,7 +97,7 @@ function getBatteryList_(req, res) {
   database.query(SQL_SELECT_DISTANCE, values, conn)
     .then(function(result) {
       helper.sendResult(res, {
-        batteryList: result
+        batteryList: _prepareBatteryList(result)
       });
     },
     function (reason) {
@@ -194,6 +193,13 @@ function _prepareBatteryList(batterList) {
   var items = [];
   var prevItem;
   _.forEach(batterList, function (batteryItem) {
-
-  })
+    if (!prevItem) {
+      prevItem = batteryItem;
+      return;
+    }
+    prevItem.distance = prevItem.mileage - batteryItem.mileage;
+    items.push(prevItem);
+    prevItem = batteryItem;
+  });
+  return items;
 }

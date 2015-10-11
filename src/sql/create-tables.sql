@@ -14,11 +14,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `bicycle-battery`;
 CREATE TABLE `bicycle-battery` (
   `id` int(11) NOT NULL,
-  `token` varchar(40) NOT NULL,
-  `date` date NOT NULL COMMENT 'The day was on the charged battery' ,
+  `token` varchar(40) NOT NULL COMMENT 'the unique token of the user',
+  `date` date NOT NULL COMMENT 'The day on which the battery was charged' ,
   `mileage` int(11) NOT NULL COMMENT 'The current mileage on the control unit',
-  `average_speed` int(11) NOT NULL,
-  `distance` int(11) NOT NULL COMMENT 'The distance with the battery'
+  `average_speed` int(11) NOT NULL 'The average speed',
+  `leftover` int(11) NOT NULL COMMENT 'The distance that can still be driven with the battery'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
