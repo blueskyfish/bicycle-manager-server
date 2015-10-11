@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `bicycle-battery`;
 CREATE TABLE `bicycle-battery` (
   `id` int(11) NOT NULL,
-  `token` varchar(40) NOT NULL COMMENT 'the unique token of the user',
+  `token` varchar(120) NOT NULL COMMENT 'the unique token of the user',
   `date` date NOT NULL COMMENT 'The day on which the battery was charged' ,
   `mileage` int(11) NOT NULL COMMENT 'The current mileage on the control unit',
   `average_speed` int(11) NOT NULL 'The average speed',
