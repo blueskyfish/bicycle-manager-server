@@ -149,7 +149,7 @@ function saveModifiedBattery_(req, res) {
   database.query(SQL_UPDATE_DISTANCE, data, conn)
     .then(function () {
       helper.sendResult(res, {
-        distanceId: id
+        id: id
       });
     },
     function (reason) {
