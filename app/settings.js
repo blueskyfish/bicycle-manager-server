@@ -79,8 +79,14 @@ function _loadGlobalSettings() {
 function _loadModeSettings() {
   var filename = path.join(environment.getHomePath(true), 'var', 'config', 'settings.' + mMode + '.json');
   try {
+    if (!!mTrace) {
+      console.log('Load "%s"', filename);
+    }
     return require(filename);
   } catch (e) {
+    if (!!mTrace) {
+      console.log(e);
+    }
     return {};
   }
 }
