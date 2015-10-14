@@ -25,7 +25,7 @@ function _aboutHandler(req, res) {
     machine: {
       host: settings.host(),
       port: settings.port(),
-      mode: settings.port()
+      mode: settings.mode()
     },
     version: {
       name: pkg.name,
