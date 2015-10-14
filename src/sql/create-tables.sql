@@ -17,7 +17,7 @@ CREATE TABLE `bicycle-battery` (
   `token` varchar(120) NOT NULL COMMENT 'the unique token of the user',
   `date` date NOT NULL COMMENT 'The day on which the battery was charged' ,
   `mileage` int(11) NOT NULL COMMENT 'The current mileage on the control unit',
-  `average_speed` int(11) NOT NULL 'The average speed',
+  `average_speed` int(11) NOT NULL COMMENT 'The average speed',
   `leftover` int(11) NOT NULL COMMENT 'The distance that can still be driven with the battery'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
