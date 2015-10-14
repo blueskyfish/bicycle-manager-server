@@ -25,6 +25,9 @@ var mConfig = {
 if (logger.isDebugEnabled()) {
   logger.debug('DB:\n', JSON.stringify(mConfig, null, 3));
 }
+if (settings.isTrace()) {
+  console.log('DB\n', JSON.stringify(mConfig, null, 3));
+}
 
 
 module.exports = {

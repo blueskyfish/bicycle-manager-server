@@ -37,6 +37,7 @@ Overview
 | mode           | string      | yes (no: see Environment) | Describes the running mode. There are some modes: `local`, `test` and `prod`.
 | port           | int         | no (8800)                 | The listen port.
 | host           | string      | no (localhost)            | The host of the server
+| trace          | boolean     | no (false)                | force to print message on the console.
 
 ### Environment
 

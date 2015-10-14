@@ -21,6 +21,7 @@ var params = minimist(process.argv.slice(2));
 var mMode = params.mode || environment.fromEnv('BICYCLE_MODE') || 'local';
 var mHost = params.host || 'localhost';
 var mPort = params.port || 8800;
+var mTrace = params.trace || false;
 
 var mSettings = loadSettings_();
 
@@ -36,6 +37,10 @@ module.exports = {
 
   port: function () {
     return mPort;
+  },
+
+  isTrace: function () {
+    return !!mTrace;
   },
 
   getValue: function (name, def) {
