@@ -81,7 +81,7 @@ function tokenMiddleware_(req, res, next) {
   var token = req.get(TOKEN_HEADER);
   if (!token || token === '') {
     return helper.sendError(res, helper.HTTP_LOGIN, {
-      message: 'missing the login token"!'
+      message: 'missing the login token!'
     });
   }
   req.token = token;

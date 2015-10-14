@@ -8,6 +8,7 @@
 'use strict';
 
 var helper = require('./helper');
+var settings = require('../settings');
 
 var pkg = require('../../package.json');
 
@@ -21,6 +22,11 @@ module.exports = {
 
 function _aboutHandler(req, res) {
   helper.sendResult(res, {
+    machine: {
+      host: settings.host(),
+      port: settings.port(),
+      mode: settings.port()
+    },
     version: {
       name: pkg.name,
       version: pkg.version
