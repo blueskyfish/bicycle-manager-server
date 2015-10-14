@@ -18,7 +18,7 @@ var host = settings.host();
 
 var options = {
   homePath: environment.getHomePath(true),
-  name: 'bdr-server',
+  name: 'bicycle-server',
   duration: 600,
   shutdown: function (name) {
     logger.info('"', name, '": Server will be shutdown');
