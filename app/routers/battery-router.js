@@ -10,9 +10,10 @@
 var _ = require('lodash');
 var express = require('express');
 
-var database = require('../database');
 var helper = require('./helper');
 var logger = require('../logger').getLogger('server.router.battery');
+
+var batteryProvider = require('./battery-provider');
 
 var router = express.Router();
 
@@ -27,6 +28,8 @@ router.use(tokenMiddleware_);
 // Endpoints
 //
 router.get('/', getBatteryList_);
+router.get('/:id', getBatteryEdit_);
+router.get('/detail/:id', getBatteryDetail_);
 router.post('/', saveNewBattery_);
 router.put('/:id', saveModifiedBattery_);
 router.delete('/:id', deleteBattery_);
@@ -40,40 +43,6 @@ module.exports = {
 
 };
 
-var SQL_SELECT_DISTANCE = [
-  'SELECT `id`, ',
-  '  DATE_FORMAT(`date`, "%Y-%m-%d") AS date, ',
-  '  `mileage`, ',
-  '  `average_speed` AS averageSpeed,' +
-  '  `leftover` ',
-  'FROM `bicycle-battery` ',
-  'WHERE `token` = {token} ',
-  'ORDER BY `date` DESC '
-].join('\n');
-
-var SQL_INSERT_DISTANCE = [
-  'INSERT INTO `bicycle-battery` SET ',
-  '  `token` = {token}, ',
-  '  `date` = {date}, ',
-  '  `mileage` = {mileage}, ',
-  '  `average_speed` = {averageSpeed}, ' +
-  '  `leftover` = {leftover}'
-].join('\n');
-
-var SQL_UPDATE_DISTANCE = [
-  'UPDATE `bicycle-battery` SET ',
-  '  `token` = {token}, ',
-  '  `date` = {date}, ',
-  '  `mileage` = {mileage}, ',
-  '  `average_speed` = {averageSpeed}, ' +
-  '  `leftover` = {leftover} ',
-  'WHERE `id` = {id} AND `token` = {token}'
-].join('\n');
-
-var SQL_DELETE_DISTANCE = [
-  'DELETE FROM `bicycle-bicycle` ',
-  'WHERE `id` = {id} AND `token` = {token}'
-].join('\n');
 
 
 function tokenMiddleware_(req, res, next) {
@@ -90,64 +59,79 @@ function tokenMiddleware_(req, res, next) {
 }
 
 function getBatteryList_(req, res) {
-  var values = {
-    token: req.token
-  };
-  var conn = database.getConnection();
-  database.query(SQL_SELECT_DISTANCE, values, conn)
-    .then(function(result) {
+  var token = req.token;
+
+  batteryProvider.getBatteryList(token)
+    .then(function (result) {
       helper.sendResult(res, {
-        batteryList: _prepareBatteryList(result)
+        batteryList: result
       });
     },
     function (reason) {
       helper.sendError(res, helper.HTTP_ERROR, {
         reason: reason
       });
-    })
-    .fin(function () {
-      conn.end();
-      logger.debug('list: close connection');
+    });
+}
+
+function getBatteryDetail_(req, res) {
+  var id = req.params.id;
+  var token = req.token;
+
+  batteryProvider.getBatteryDetail(token, id)
+    .then(function (detail) {
+      helper.sendResult(res, {
+        battery: detail
+      });
+    },
+    function (reason) {
+      helper.sendError(res, helper.HTTP_ERROR, {
+        reason: reason
+      });
+    });
+}
+
+function getBatteryEdit_(req, res) {
+  var id = req.params.id;
+  var token = req.token;
+
+  batteryProvider.getBatteryEdit(token, id)
+    .then(function (result) {
+      helper.sendResult(res, {
+        battery: result
+      });
+    },
+    function (reason) {
+      helper.sendError(res, helper.HTTP_ERROR, {
+        reason: reason
+      });
     });
 }
 
 function saveNewBattery_(req, res) {
-  var values = {
-    token: req.token
-  };
-  var batteryItem = req.body;
-  var data = _.assign({}, values, batteryItem);
-  var conn = database.getConnection();
+  var token = req.token;
+  var item = req.body;
 
-  database.query(SQL_INSERT_DISTANCE, data, conn)
-    .then(function (result) {
+  batteryProvider.insertBatteryItem(token, item)
+    .then(function (id) {
       helper.sendResult(res, {
-        id: result.insertId || -1
+        id: id
       });
     },
     function (reason) {
       helper.sendError(res, helper.HTTP_ERROR, {
         reason: reason
       });
-    })
-    .fin(function () {
-      conn.end();
-      logger.debug('save new: close connection');
     });
 }
 
 function saveModifiedBattery_(req, res) {
   var id = req.params.id;
-  var values = {
-    token: req.token,
-    id: id
-  };
-  var batteryItem = req.body;
-  var data = _.assign({}, values, batteryItem);
-  var conn = database.getConnection();
+  var token = req.token;
+  var item = req.body;
 
-  database.query(SQL_UPDATE_DISTANCE, data, conn)
-    .then(function () {
+  batteryProvider.updateBatteryItem(token, id, item)
+    .then(function (id) {
       helper.sendResult(res, {
         id: id
       });
@@ -156,23 +140,15 @@ function saveModifiedBattery_(req, res) {
       helper.sendError(res, helper.HTTP_ERROR, {
         reason: reason
       });
-    })
-    .fin(function () {
-      conn.end();
-      logger.debug('save mod: close connection');
     });
 }
 
 function deleteBattery_(req, res) {
   var id = req.params.id;
-  var values = {
-    token: req.token,
-    id: id
-  };
-  var conn = database.getConnection();
+  var token = req.token;
 
-  database.query(SQL_DELETE_DISTANCE, values, conn)
-    .then(function () {
+  batteryProvider.deleteBatteryItem(token, id)
+    .then(function (id) {
       helper.sendResult(res, {
         id: id
       });
@@ -181,25 +157,6 @@ function deleteBattery_(req, res) {
       helper.sendError(res, helper.HTTP_ERROR, {
         reason: reason
       });
-    })
-    .fin(function () {
-      conn.end();
-      logger.debug('delete: close connection');
     });
 }
 
-
-function _prepareBatteryList(batterList) {
-  var items = [];
-  var prevItem;
-  _.forEach(batterList, function (batteryItem) {
-    if (!prevItem) {
-      prevItem = batteryItem;
-      return;
-    }
-    prevItem.distance = prevItem.mileage - batteryItem.mileage;
-    items.push(prevItem);
-    prevItem = batteryItem;
-  });
-  return items;
-}
