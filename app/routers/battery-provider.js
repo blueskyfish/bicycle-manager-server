@@ -269,7 +269,6 @@ function getBatteryEdit_(token, id) {
       if (_.isArray(result)) {
         result = result[0];
       }
-      console.log('Edit %s: %s', id, JSON.stringify(result));
       return result || null;
     })
     .fin(function () {
