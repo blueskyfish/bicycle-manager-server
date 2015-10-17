@@ -247,7 +247,7 @@ function getBatteryDetail_(token, id) {
 
   return database.query(SQL_SELECT_DETAIL, values, conn)
     .then(function (result) {
-      if (isArray(result)) {
+      if (_.isArray(result)) {
         result = result[0];
       }
       return result || null;
