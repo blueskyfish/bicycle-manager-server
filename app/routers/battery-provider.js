@@ -331,7 +331,7 @@ function deleteBatteryItem_(token, id) {
 function _prepareBatteryList(batterList) {
   var items = [];
   var prevItem;
-  forEach(batterList, function (batteryItem) {
+  _.forEach(batterList, function (batteryItem) {
     if (!prevItem) {
       prevItem = batteryItem;
       return;
