@@ -7,10 +7,18 @@
 
 'use strict';
 
-var factory = require('bluesky-logger');
+var path = require('path');
 
-var fileAppender = require('./file-appender');
+var factory = require('bluesky-logger');
+var fileAppender = require('bluesky-logger/file-appender.js');
+
+var environment = require('./environment');
 var settings = require('./settings');
+
+var filer = fileAppender({
+  path: path.join(environment.getHomePath(true), 'var', 'logs'),
+  name: 'bicycle-manager'
+});
 
 switch (settings.mode()) {
   case 'local':
@@ -32,11 +40,12 @@ switch (settings.mode()) {
     factory
       .config({
         'root': 'info',
-        'server': 'config'
+        'server': 'config',
+        'server.logger': 'debug'
       })
       .setSeparator('.')
       .setWriter(function (logName, message) {
-        fileAppender.appendMessage(logName, message);
+        filer.appendMessage(logName, message);
       });
     break;
 }
