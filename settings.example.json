@@ -1,0 +1,28 @@
+{
+  "server": {
+    "port": 18080,
+    "host": "localhost"
+  },
+  "db": {
+    "port": 3306,
+    "host": "localhost",
+    "user": "database user",
+    "password": "database password",
+    "database": "datebase name",
+    "connectionLimit": 10
+  },
+  "logger": {
+    "config": {
+      "root": "info",
+      "bisev": "debug",
+      "bisev.db": "debug",
+      "bisev.middleware": "debug",
+      "bisev.metric": "info",
+      "bisev.executor": "info",
+      "bisev.service": "debug",
+      "bisev.shutdown": "info"
+    },
+    "separator": ".",
+    "appender": "console"
+  }
+}

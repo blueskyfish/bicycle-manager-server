@@ -1,0 +1,39 @@
+{
+  "name": "bicycle-server",
+  "version": "2.0.0",
+  "description": "The bicycle backend. It is a micro server programming in javascript and running with node js. The micro server save all bicycle things",
+  "title": "Bicycle Server",
+  "author": "blueskyfish <blueskyfish@kirchnerei.de>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blueskyfish/bicycle-server.git"
+  },
+  "readme": "",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js --config settings.dev.json",
+    "jsdoc":  "./node_modules/.bin/jsdoc -r -c ./jsdoc-config.json -d ./jsdoc",
+    "apidoc": "./node_modules/.bin/apidoc -f \".*\\.js$\" -i ./app -o ./apidoc"
+  },
+  "bin": {
+    "bisev": "server.js"
+  },
+  "dependencies": {
+    "app-module-path": "1.1.0",
+    "bluesky-logger": "0.7.0",
+    "body-parser": "1.15.2",
+    "express": "4.14.0",
+    "lodash": "4.15.0",
+    "minimist": "1.2.0",
+    "mocha": "3.0.2",
+    "moment": "2.15.0",
+    "mysql": "2.11.1",
+    "q": "1.4.1"
+  },
+  "devDependencies": {
+    "apidoc": "0.16.1",
+    "docdash": "0.4.0",
+    "jsdoc": "3.4.1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Bicycle Server",
+  "version": "2.0.0",
+  "description": "The bicycle backend",
+  "title": "Bicycle Server Endpoints",
+  "url" : "http://localhost:14080"
+}
