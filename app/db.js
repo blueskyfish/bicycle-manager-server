@@ -59,6 +59,7 @@ Conn.prototype.query = function (sql, values) {
  */
 Conn.prototype.release = function () {
   this.conn.release();
+  logger.debug('Release DB connection');
 };
 
 /**
