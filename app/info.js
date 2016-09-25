@@ -10,20 +10,22 @@
  * @module bicycle/info
  *
  * @requires fs
+ * @requires path
  */
 
 'use strict';
 
-const fs  = require('fs');
+const fs   = require('fs');
+const path = require('path');
 
-const pkg = require('../package.json');
+const pkg = require(path.join(__dirname, '..', 'package.json'));
 
 var version = {};
 
 //
 // try to read the version.json file
 //
-fs.readFile('../version.json', 'utf-8', function (err, content) {
+fs.readFile(path.join(__dirname, '..', 'version.json'), 'utf-8', function (err, content) {
   if (!err) {
     try {
       version = JSON.parse(content);

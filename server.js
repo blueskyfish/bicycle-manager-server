@@ -11,6 +11,7 @@
  *
  * @requires app-module-path
  * @requires fs
+ * @requires path
  * @requires bicycle/info
  * @requires bicycle/args
  * @requires bicycle/configure
@@ -26,6 +27,7 @@
 require('app-module-path').addPath(__dirname);
 
 const fs        = require('fs');
+const path      = require('path');
 
 const info      = require('app/info');
 const args      = require('app/args');
@@ -34,7 +36,7 @@ const shutdown  = require('app/shutdown');
 
 
 if (args.isHelp()) {
-  const content = fs.readFileSync('./man.txt');
+  const content = fs.readFileSync(path.join(__dirname, 'man.txt'));
   _printHeaderAndHero();
   console.info(content.toString());
   process.exit(0);
@@ -98,7 +100,7 @@ configure(configureOptions)
  */
 function _printHeaderAndHero(logger) {
   if (fs.existsSync('./hero.txt')) {
-    const hero = fs.readFileSync('./hero.txt', 'utf8').toString();
+    const hero = fs.readFileSync(path.join(__dirname, 'hero.txt'), 'utf8').toString();
     const lines = hero.split('\n');
     lines.forEach(function (line) {
       if (logger) {

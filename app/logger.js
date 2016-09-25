@@ -41,10 +41,9 @@ var consoleOutput = true;
  * @return {Logger} the logger for namespace **temo**.
  */
 module.exports.start = function (settings) {
-  console.log(settings);
   // Logger Configuration
   loggerFactory
-    .config(configUtil.getSetting(settings, 'logger.config', DEFAULT_LOGGER_CONFIG))
+    .config(configUtil.getSetting(settings, 'logger.namespaces', DEFAULT_LOGGER_CONFIG))
     .setSeparator(configUtil.getSetting(settings, 'logger.separator', '.'));
   if (configUtil.getSetting(settings, 'logger.appender', 'console') === 'file') {
 
