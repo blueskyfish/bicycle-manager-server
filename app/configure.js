@@ -82,6 +82,9 @@ module.exports = function configure (options) {
       process.on('SIGTERM', function () {
         _shutdown('Kill..', shutdown);
       });
+      process.on('SIGHUP', function () {
+        _shutdown('HangUp', shutdown);
+      });
       return true;
     })
     .then(function () {
