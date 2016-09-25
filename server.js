@@ -99,8 +99,10 @@ configure(configureOptions)
  * @private
  */
 function _printHeaderAndHero(logger) {
-  if (fs.existsSync('./hero.txt')) {
-    const hero = fs.readFileSync(path.join(__dirname, 'hero.txt'), 'utf8').toString();
+  const heroFile = path.join(__dirname, 'hero.txt');
+
+  if (fs.existsSync(heroFile)) {
+    const hero = fs.readFileSync(heroFile, 'utf8').toString();
     const lines = hero.split('\n');
     lines.forEach(function (line) {
       if (logger) {
