@@ -30,7 +30,7 @@ module.exports.measureTime = function () {
     const startTime = Date.now();
     const url = req.originalUrl;
     next();
-    logger.debug('request "', url, '" in ', Date.now() - startTime, ' ms');
+    logger.info('request "', url, '" in ', Date.now() - startTime, ' ms');
   }
 };
 
@@ -54,7 +54,7 @@ module.exports.headerToken = function () {
       return;
     }
     req.token = token;
-    logger.debug('"', url, '" token: ', token);
+    logger.info('request "', url, '" with token: ', token);
     next();
   }
 };
