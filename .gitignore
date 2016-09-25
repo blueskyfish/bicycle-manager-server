@@ -19,3 +19,7 @@ apidoc/
 # Settings
 settings.*.json
 !settings.example.json
+
+# Productions
+run.sh
+version.json
