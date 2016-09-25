@@ -164,7 +164,3 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [github]: https://github.com
 [yeoman]: http://yeoman.io
-
-
-* Test
-* Test setup script 2. Versuch
