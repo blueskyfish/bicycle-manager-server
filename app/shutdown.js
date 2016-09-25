@@ -41,4 +41,5 @@ module.exports.shutdown = function (name) {
     cb(name);
   });
   logger.info('application is shutdown "', name, '"!');
+  logger.info('--------------------------------------------------------------');
 };

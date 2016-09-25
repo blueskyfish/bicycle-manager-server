@@ -17,6 +17,7 @@
  *
  * @requires fs
  * @requires path
+ * @requires lodash
  * @requires q
  */
 
@@ -25,6 +26,7 @@
 const fs   = require('fs');
 const path = require('path');
 
+const _    = require('lodash');
 const Q    = require('q');
 
 const UNKNOWN_PID = 0;
@@ -33,6 +35,7 @@ const UNKNOWN_PID = 0;
  * @name ConfigureOptions
  * @property {string}   [configFilename] the filename of the configuration file.
  * @property {string}   [name] the name of the application
+ * @property {string}   [path] the path to the pid file.
  * @property {function} [shutdown] the function is calling by the signal shutdown.
  */
 
@@ -50,11 +53,11 @@ const UNKNOWN_PID = 0;
  */
 module.exports = function configure (options) {
   const appName      = options.name || 'bicycle-server';
+  const logPath      = options.path || process.cwd();
 
   // get the pathname of the configuration or the current working directory.
   const confPathname = options.configFilename || (path.join(process.cwd(), appName + '.json'));
-  const homePath     = path.dirname(confPathname);
-  const pidPathname  = path.join(homePath, appName + '.pid');
+  const pidPathname  = path.join(logPath, appName + '.pid');
 
   // wait between shutdown check!
   // TODO The stop wait is constant or argument
@@ -85,7 +88,7 @@ module.exports = function configure (options) {
       // read the configuration
       return _readConfig(confPathname)
         .then(function (settings) {
-          settings.homePath = homePath;
+          _.set(settings, 'logger.path', logPath);
           return settings;
         })
     });

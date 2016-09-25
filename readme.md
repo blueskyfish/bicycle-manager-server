@@ -29,7 +29,7 @@ Some settings or replacement cannot be done with the generator. After doing this
 ## Execute the Application
 
 ```sh
-$ node server.js [--verbose | -v] [--help] --config=/path/to/configuration.json
+$ node server.js [--verbose | -v] [--help] --config=/path/to/configuration.json --log=/path/to/log/dir
 ```
 
 ## Endpoints
@@ -51,6 +51,7 @@ Name                | Type    | Required | Description
 `--verbose` | `-v`  | boolean | no       | Show more logging messages
 `--help`            | boolean | no       | Shows the help
 `--config=/path/to` | string  | yes      | The filename with the path to the configuration json file.
+`--log=/path/to`    | string  | yes      | The directory for the log files. Also save here the PID file.
 
 
 ### Setting File

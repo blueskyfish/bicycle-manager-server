@@ -46,6 +46,7 @@ if (args.isHelp()) {
 const configureOptions = {
   configFilename: args.getConfigFilename(),
   name:       info.getAppName(),
+  path:       args.getLogPath(),
   shutdown: function (name) {
     shutdown.shutdown(name);
     console.info('Server is shutdown with "%s"', name);
@@ -67,8 +68,6 @@ configure(configureOptions)
         // initialize DB
         require('app/db').start(settings);
         logger.info('Connection pool is started successful...');
-
-        // TODO Add things for starting or initialize with settings
 
         // start the application
         require('app/application')

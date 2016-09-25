@@ -10,7 +10,9 @@
 
 # Node & NPM
 node_modules/
-npm-debug.log
+logs/
+*.pid
+*.log
 
 # JSDoc
 jsdoc/

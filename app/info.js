@@ -8,11 +8,30 @@
  * Contains the information about the application. It is read from the package.json
  *
  * @module bicycle/info
+ *
+ * @requires fs
  */
 
 'use strict';
 
+const fs  = require('fs');
+
 const pkg = require('../package.json');
+
+var version = {};
+
+//
+// try to read the version.json file
+//
+fs.readFile('../version.json', 'utf-8', function (err, content) {
+  if (!err) {
+    try {
+      version = JSON.parse(content);
+    } catch (e) {
+      //
+    }
+  }
+});
 
 
 module.exports.getAppName = function () {
@@ -34,6 +53,11 @@ module.exports.getAppVendor = function () {
 module.exports.getAppDescription = function () {
   return pkg.description;
 };
+
+module.exports.getBuildTimestamp = function () {
+  return version.timestamp || 'unknown';
+};
+
 
 /**
  * Prints the header information.

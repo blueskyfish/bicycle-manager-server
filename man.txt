@@ -1,6 +1,15 @@
-#
-# Bicycle Server - https://github.com/blueskyfish/bicycle-server.git
-#
-# Copyright (c) 2016 blueskyfish
-#
-# Add here your help message.
+The bicycle backend. It is a micro server programming in javascript
+and running with node js. The micro server save all bicycle things.
+
+How to start:
+  $ node ./server.js --config=/path/to/config/settings.json \
+    --log=/path/to/log/messages [--verbose | -v] [--help]
+
+  --config        The config / settings files. see at "settings.example.json"
+  --log           The path to the log message and the place for the pid file
+  --verbose | -v  Optional: show more log messages
+  --help          Optional: show this help
+
+Requirement:
+  - Node Version 4.5
+  - MySQL Database engine

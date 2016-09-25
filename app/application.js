@@ -81,6 +81,7 @@ module.exports.start = function (settings) {
    * @apiSuccess {String} version the version of the application
    * @apiSuccess {String} vendor the author / company of the application
    * @apiSuccess {String} description a short description.
+   * @apiSuccess {String} build the timestamp of the publishing
    *
    * @apiSuccessExample {json} Success response:
    *     HTTP/1.1 200 OK
@@ -90,6 +91,7 @@ module.exports.start = function (settings) {
    *       "version": "2.0.0",
    *       "vendor": "blueskyfish <blueskyfish@kirchnerei.de>",
    *       "description": "The bicycle backend..."
+   *       "build": "20160912-13:51:02"
    *     }
    */
   app.get('/about', function about(req, res) {
@@ -98,7 +100,8 @@ module.exports.start = function (settings) {
       title: info.getAppTitle(),
       version: info.getAppVersion(),
       vendor: info.getAppVendor(),
-      description: info.getAppDescription()
+      description: info.getAppDescription(),
+      build: info.getBuildTimestamp()
     });
   });
 
