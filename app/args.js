@@ -15,7 +15,7 @@
  * --config=pathname  the pathname to the configuration file.
  * ```
  *
- * @module bisev/args
+ * @module bicycle/args
  *
  * @requires minimist
  */

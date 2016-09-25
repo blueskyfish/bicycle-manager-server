@@ -7,7 +7,7 @@
 /**
  * Utility function for settings and / or configuration.
  *
- * @module bisev/config-util
+ * @module bicycle/config-util
  *
  * @requires lodash
  */

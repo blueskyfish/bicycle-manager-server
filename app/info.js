@@ -7,7 +7,7 @@
 /**
  * Contains the information about the application. It is read from the package.json
  *
- * @module bisev/info
+ * @module bicycle/info
  */
 
 'use strict';

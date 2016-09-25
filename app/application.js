@@ -7,16 +7,16 @@
 /**
  * The application of express.
  *
- * @module bisev/application
+ * @module bicycle/application
  *
  * @requires body-parser
  * @requires express
  * @requires q
- * @requires module:bisev/info
- * @requires module:bisev/config-util
- * @requires module:bisev/logger
- * @requires module:bisev/middleware
- * @requires module:bisev/router/battery
+ * @requires module:bicycle/info
+ * @requires module:bicycle/config-util
+ * @requires module:bicycle/logger
+ * @requires module:bicycle/middleware
+ * @requires module:bicycle/router/battery
  */
 
 'use strict';
@@ -27,7 +27,7 @@ const Q               = require('q');
 
 const info            = require('app/info');
 const configUtil      = require('app/config-util');
-const logger          = require('app/logger').getLogger('bisev');
+const logger          = require('app/logger').getLogger('bicycle');
 
 const middleware      = require('app/middleware');
 

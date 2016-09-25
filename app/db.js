@@ -7,14 +7,14 @@
 /**
  * Handle all database manipulations
  *
- * @module bisev/db
+ * @module bicycle/db
  *
  * @requires lodash
  * @requires mysql
  * @requires q
- * @requires module:bisev/args
- * @requires module:bisev/config-util
- * @requires module:bisev/logger
+ * @requires module:bicycle/args
+ * @requires module:bicycle/config-util
+ * @requires module:bicycle/logger
  */
 
 'use strict';
@@ -25,7 +25,7 @@ const Q     = require('q');
 
 const args       = require('app/args');
 const configUtil = require('app/config-util');
-const logger     = require('app/logger').getLogger('bisev.db');
+const logger     = require('app/logger').getLogger('bicycle.db');
 
 
 /**

@@ -7,7 +7,7 @@
 /**
  * Manages the sending of an promise callback.
  *
- * @module bisev/http-status
+ * @module bicycle/http-status
  */
 
 'use strict';

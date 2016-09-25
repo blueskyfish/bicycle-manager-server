@@ -7,14 +7,14 @@
 'use strict';
 
 /**
- * @module bisev/logger
+ * @module bicycle/logger
  *
  * @requires fs
  * @requires path
  * @requires module:bluesky-logger
  * @requires module:bluesky-logger/file-appender
- * @requires module:bisev/info
- * @requires module:bisev/config-util
+ * @requires module:bicycle/info
+ * @requires module:bicycle/config-util
  */
 
 const fs   = require('fs');
@@ -28,7 +28,7 @@ const configUtil    = require('app/config-util');
 
 const DEFAULT_LOGGER_CONFIG = {
   'root': 'info',
-  'bisev': 'debug'
+  'bicycle': 'debug'
 };
 
 // write the log messages to the console or not.
@@ -60,7 +60,7 @@ module.exports.start = function (settings) {
     // the log messages are written into file
     consoleOutput = false;
   }
-  const logger = loggerFactory.getLogger('bisev');
+  const logger = loggerFactory.getLogger('bicycle');
   logger.isConsole = consoleOutput;
   return logger;
 };

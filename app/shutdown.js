@@ -7,17 +7,17 @@
 /**
  * Handler for shutdown callbacks.
  *
- * @module bisev/shutdown
+ * @module bicycle/shutdown
  *
  * @requires lodash
- * @requires bisev/logger
+ * @requires bicycle/logger
  */
 
 'use strict';
 
 const _ = require('lodash');
 
-const logger = require('app/logger').getLogger('bisev.shutdown');
+const logger = require('app/logger').getLogger('bicycle.shutdown');
 
 const mListeners = [];
 

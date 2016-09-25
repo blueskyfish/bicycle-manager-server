@@ -5,10 +5,10 @@
  */
 
 /**
- * @module bisev/service/battery-list
+ * @module bicycle/service/battery-list
  *
  * @requires lodash
- * @requires module:bisev/db
+ * @requires module:bicycle/db
  */
 
 'use strict';

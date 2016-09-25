@@ -5,10 +5,10 @@
  */
 
 /**
- * @module bisev/router/battery
+ * @module bicycle/router/battery
  *
  * @requires express
- * @requires bisev/executor
+ * @requires bicycle/executor
  */
 
 'use strict';

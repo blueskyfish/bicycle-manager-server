@@ -5,13 +5,13 @@
  */
 
 /**
- * @module bisev/service/battery-edit
+ * @module bicycle/service/battery-edit
  *
  * @requires util
  * @requires lodash
  * @requires q
  *
- * @requires module:bisev/db
+ * @requires module:bicycle/db
  */
 
 'use strict';

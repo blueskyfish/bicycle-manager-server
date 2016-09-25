@@ -13,7 +13,7 @@
 /**
  * Configures the application.
  *
- * @module bisev/configure
+ * @module bicycle/configure
  *
  * @requires fs
  * @requires path
@@ -49,7 +49,7 @@ const UNKNOWN_PID = 0;
  * @return the promise resolve callback has the parameter as a JSON settings instance.
  */
 module.exports = function configure (options) {
-  const appName      = options.name || 'bisev-server';
+  const appName      = options.name || 'bicycle-server';
 
   // get the pathname of the configuration or the current working directory.
   const confPathname = options.configFilename || (path.join(process.cwd(), appName + '.json'));

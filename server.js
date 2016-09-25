@@ -7,14 +7,14 @@
 /**
  * Configures and startup the application server
  *
- * @module bisev
+ * @module bicycle
  *
  * @requires app-module-path
  * @requires fs
- * @requires bisev/info
- * @requires bisev/args
- * @requires bisev/configure
- * @requires bisev/shutdown
+ * @requires bicycle/info
+ * @requires bicycle/args
+ * @requires bicycle/configure
+ * @requires bicycle/shutdown
  */
 
 'use strict';
@@ -79,9 +79,9 @@ configure(configureOptions)
           });
       } catch (e) {
         if (logger) {
-          logger.warn('[bisev] ', e);
+          logger.warn('[bicycle] ', e);
         } else {
-          logger.warn('[bisev] ', e);
+          logger.warn('[bicycle] ', e);
         }
       }
     },

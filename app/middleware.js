@@ -7,14 +7,14 @@
 /**
  * Middleware handler for read the http header field and measure the request time.
  *
- * @module bisev/middleware
+ * @module bicycle/middleware
  *
- * @requires bisev/logger
+ * @requires bicycle/logger
  */
 
 'use strict';
 
-const logger     = require('app/logger').getLogger('bisev.middleware');
+const logger     = require('app/logger').getLogger('bicycle.middleware');
 const httpStatus = require('app/http-status');
 
 var TOKEN_HEADER = 'x-bicycle-token';

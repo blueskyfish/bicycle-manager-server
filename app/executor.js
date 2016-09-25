@@ -21,11 +21,11 @@
  * });
  * ```
  *
- * @module bisev/executor
+ * @module bicycle/executor
  *
  * @requires util
  * @requires lodash
- * @requires bisev/http-util
+ * @requires bicycle/http-util
  */
 
 'use strict';
@@ -79,7 +79,7 @@ module.exports.execute = function (req, res, cb) {
 
   } catch (e) {
     e = e.message;
-    const message = util.format('[bisev]: %s (%s)', e, url);
+    const message = util.format('[bicycle]: %s (%s)', e, url);
     res.status(httpStatus.BAD_REQUEST)
       .send({
         status: 'error',
