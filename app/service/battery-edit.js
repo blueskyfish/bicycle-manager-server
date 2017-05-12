@@ -31,7 +31,6 @@ const db          = require('app/db');
 
 /**
  * @name BatteryEdit
- * @property {Number} id the id of the battery record
  * @property {String} date the date of the battery recharge
  * @property {Number} mileage the mileage from the control
  * @property {Number} averageSpeed the average speed
@@ -44,7 +43,7 @@ const db          = require('app/db');
  * @type {string}
  */
 const SQL_SELECT_BATTERY_EDIT = [
-  'SELECT `id`, ',
+  'SELECT ',
   '  DATE_FORMAT(`date`, "%Y-%m-%d") AS date,',
   '  `mileage`,',
   '  `average_speed` AS averageSpeed,' +

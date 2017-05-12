@@ -1,6 +1,6 @@
 {
   "name": "bicycle-server",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "The bicycle backend. It is a micro server programming in javascript and running with node js. The micro server save all bicycle things",
   "title": "Bicycle Server",
   "author": "blueskyfish <blueskyfish@kirchnerei.de>",

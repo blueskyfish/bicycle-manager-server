@@ -57,7 +57,6 @@ router.use(middleware.headerToken());
 
 /**
  * @apiDefine BatteryEditResult
- * @apiSuccess {Number} id the id of the battery detail
  * @apiSuccess {String} date the date of battery charging
  * @apiSuccess {Number} averageSpeed the average speed
  * @apiSuccess {Number} leftover the left over of the battery charge
@@ -130,7 +129,6 @@ router.get('/', function (req, res) {
  *     {
  *       "status": "okay",
  *       "battery": {
- *         "id": 4711,
  *         "date": "2016-08-12",
  *         "averageSpeed": 188,
  *         "leftover": 50,
