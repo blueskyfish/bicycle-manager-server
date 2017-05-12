@@ -63,8 +63,8 @@ module.exports.execute = function (options) {
       const values = _.merge({}, options);
       return conn.query(SQL_UPDATE_BATTERY, values)
         .then(function (result) {
-          if (result.affectedRows < 1) {
-            return Q.reject('Could not update the battery record (' + result.affectedRows + ')');
+          if (result.changedRows < 1) {
+            return Q.reject('Could not update the battery record (' + result.changedRows + ')');
           }
           return id;
         })
