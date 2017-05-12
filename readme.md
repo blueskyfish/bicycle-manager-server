@@ -9,7 +9,7 @@ _Generates with [Yeoman][yeoman] and the generator <https://github.com/blueskyfi
 
 ## Table of Content
 
-* [TODOs](#user-content-todos)
+* [History](#history)
 * [Execute the Application](#user-content-execute-the-application)
 * [Endpoints](#user-content-endpoints)
 * [Deployment](#user-content-deployment)
@@ -20,11 +20,11 @@ _Generates with [Yeoman][yeoman] and the generator <https://github.com/blueskyfi
 * [Generate Documentation](#user-content-generate-documentation)
 * [License](#user-content-license)
 
-## TODOs
+## History
 
-Some settings or replacement cannot be done with the generator. After doing this, you can delete this section.
-
-* Replace the Logo (`logo.png`).
+| Version     | Date         | Description
+|-------------|:------------:|---------------------------------
+| `2.0.6`     | `2017-05-12` | fixed: save the modified battery record
 
 ## Execute the Application
 
