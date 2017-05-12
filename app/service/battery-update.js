@@ -64,7 +64,7 @@ module.exports.execute = function (options) {
       return conn.query(SQL_UPDATE_BATTERY, values)
         .then(function (result) {
           if (result.changedRows < 1) {
-            return Q.reject('Could not update the battery record (' + result.changedRows + ')');
+            return Q.reject('Could not update the battery record (' + result.changedRows + ') -> options=' + JSON.stringify(options) + '; result=' + JSON.stringify(result));
           }
           return id;
         })
