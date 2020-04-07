@@ -28,7 +28,7 @@
     "minimist": "1.2.5",
     "mocha": "3.0.2",
     "moment": "2.15.0",
-    "mysql": "2.11.1",
+    "mysql": "2.18.1",
     "q": "1.4.1"
   },
   "devDependencies": {
