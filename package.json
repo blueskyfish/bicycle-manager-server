@@ -24,7 +24,7 @@
     "bluesky-logger": "0.7.0",
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "lodash": "4.15.0",
+    "lodash": "4.17.15",
     "minimist": "1.2.5",
     "mocha": "3.0.2",
     "moment": "2.15.0",
