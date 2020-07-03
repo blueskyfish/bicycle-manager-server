@@ -24,7 +24,7 @@ _Generates with [Yeoman][yeoman] and the generator <https://github.com/blueskyfi
 
 | Version     | Date         | Description
 |-------------|:------------:|---------------------------------
-| `2.1.0      | `2017-05-12` | remove the property `id` from edit result.
+| `2.1.0`     | `2017-05-12` | remove the property `id` from edit result.
 | `2.0.6`     | `2017-05-12` | fixed: save the modified battery record
 
 ## Execute the Application
